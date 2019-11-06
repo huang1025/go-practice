@@ -29,6 +29,29 @@ func main() {
 	//go语言中，可以直接使用结构的指针，访问结构体的成员
 	fmt.Println(p.name)    //pp
 	fmt.Println((*p).name) //pp
+
+	//也可以直接使用结构的指针设置成员
+	var stu struct {
+		name string
+		age  int
+	}
+	stuPointer := &stu
+	stuPointer.name = "huang"
+	stuPointer.age = 17
+	fmt.Println(stuPointer)  //&{huang 17}
+	fmt.Println(*stuPointer) //{huang 17}
+
+	//没有初始化的结构体，成员都是对应的零值
+	var p2 person
+	fmt.Println(p2) //{ 0 } 前后都是空字符串
+
+	//使用键值对初始化
+	p3 := person{name: "zhou", age: 16}
+	fmt.Println(p3)
+
+	//使用值列表初始化，要求给出所有字段值
+	p4 := person{"huang", 17, "shanghai"}
+	fmt.Println(p4)
 }
 
 //定义结构体
