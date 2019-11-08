@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
@@ -37,6 +39,32 @@ func main() {
 	var a animal = d3
 	a.say()
 	a.move()
+
+	//空接口，可以接受任意类型参数
+	m := map[string]interface{}{}
+	m["name"] = "huang"
+	m["age"] = 17
+	fmt.Println(m) //map[age:17 name:huang]
+
+	//类型断言，返回的第一个参数是断言成功后转换成断言类型，第二个参数是断言是否成功
+	var name interface{}
+	name = 12
+	value, ok := name.(string)
+	if ok {
+		fmt.Println(value)
+	} else {
+		fmt.Println("断言失败，value：" + value)
+	}
+
+	//使用switch-case进行多次断言
+	switch name.(type) {
+	case string:
+		fmt.Println("string")
+	case int:
+		fmt.Println("int")
+	default:
+		fmt.Println("other")
+	}
 }
 
 type sayer interface {
